@@ -19,4 +19,8 @@ Route::get('/', function () {
 });
 Route::prefix('/role')->group(function(){
     Route::get('/',[RoleController::class, 'index'])->name('role.index');
+    Route::post('/',[RoleController::class, 'store'])->name('role.store');
+    Route::get('/{id}',[RoleController::class, 'edit'])->name('role.edit');
+    Route::put('/{id}',[RoleController::class, 'update'])->name('role.update');
+    Route::delete('/{id}',[RoleController::class, 'destroy'])->name('role.destroy');
 });
