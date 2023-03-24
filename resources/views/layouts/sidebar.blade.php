@@ -38,4 +38,9 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Permission</span></a>
     </li>
+    <li class="nav-item {{ Request::segment(1) == 'role-permission' ? 'active' : '';}}">
+        <a class="nav-link" href="{{ route('role-permission.index')}}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Role Permission</span></a>
+    </li>
 </ul>
