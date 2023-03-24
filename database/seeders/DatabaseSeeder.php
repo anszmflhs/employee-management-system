@@ -13,11 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $roles = ['admin','employee','supervisor'];
-        foreach ($roles as $role) {
-            Role::create([
-                'name' => $role
-            ]);
-        }
+        $this -> call([
+            // RoleSeeder::class,
+            PermissionSeeder::class
+        ]);
     }
 }

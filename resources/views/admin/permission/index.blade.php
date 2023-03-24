@@ -11,7 +11,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
     <div class="container-fluid">
 
 
-        <h1 class="h3 mb-2 text-gray-800">Data Role</h1>
+        <h1 class="h3 mb-2 text-gray-800">Data Permission</h1>
         <div class="mb-4">
             <a href="javascript:void(0)" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createModal">
                 <i class="fas fa-plus fa-fw"></i> Create Data
@@ -120,5 +120,5 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
     <script src="{{ asset('sbadmin') }}/vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
     <!-- Page level custom scripts -->
-    @include('admin.role.ajax')
+    @include('admin.permission.ajax')
 @endpush

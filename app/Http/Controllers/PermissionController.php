@@ -4,29 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Yajra\DataTables\Facades\DataTables;
 
-class RoleController extends Controller
+class PermissionController extends Controller
 {
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Role::latest()->get();
+            $data = Permission::latest()->get();
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('action',function ($row) {
-                    $btn = '<a href="javascript:void(0)"id="' . $row->id .'" class="btn btn-warning btn-sm mr-2 edit-button">Edit</a>';
-                    $btn .= '<a href="javascript:void(0)"id="' . $row->id .'" class="btn btn-danger btn-sm delete-button">Delete</a>';
+                ->addColumn('action', function ($row) {
+                    $btn = '<a href="javascript:void(0)"id="' . $row->id . '" class="btn btn-warning btn-sm mr-2 edit-button">Edit</a>';
+                    $btn .= '<a href="javascript:void(0)"id="' . $row->id . '" class="btn btn-danger btn-sm delete-button">Delete</a>';
 
                     return $btn;
                 })
                 ->rawColumns(['action'])->make(true);
         }
-        return view('admin.role.index');
+        return view('admin.permission.index');
     }
 
-    public function store (Request $request)
+    public function store(Request $request)
     {
         $data = $request->all();
         $rules = [
@@ -44,7 +44,7 @@ class RoleController extends Controller
             );
         }
 
-        $role = Role::create(
+        $role = Permission::create(
             [
                 'name' => $data['name'],
             ]
@@ -57,7 +57,7 @@ class RoleController extends Controller
     }
     public function edit($id)
     {
-        $role = Role::findById($id);
+        $role = Permission::findById($id);
         return response()->json(['data' => $role]);
     }
     public function update(Request $request, $id)
@@ -66,12 +66,12 @@ class RoleController extends Controller
             'name' => 'required|unique:roles',
 
         ], [
-                'name.required' => 'nama Role tidak boleh kosong!',
+            'name.required' => 'nama Role tidak boleh kosong!',
 
-            ]);
+        ]);
 
         if ($validator->passes()) {
-            Role::findById($id)->update($request->all());
+            Permission::find($id)->update($request->all());
 
             return response()->json(['message' => 'Data berhasil diupdate!']);
         }
@@ -81,7 +81,7 @@ class RoleController extends Controller
 
     public function destroy($id)
     {
-        Role::findOrFail($id)->delete();
+        Permission::findOrFail($id)->delete();
 
         return response()->json(['message' => 'Data berhasil dihapus!']);
     }

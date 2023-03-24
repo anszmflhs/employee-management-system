@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +24,11 @@ Route::prefix('/role')->group(function(){
     Route::get('/{id}',[RoleController::class, 'edit'])->name('role.edit');
     Route::put('/{id}',[RoleController::class, 'update'])->name('role.update');
     Route::delete('/{id}',[RoleController::class, 'destroy'])->name('role.destroy');
+});
+Route::prefix('/permission')->group(function(){
+    Route::get('/',[PermissionController::class, 'index'])->name('permission.index');
+    Route::post('/',[PermissionController::class, 'store'])->name('permission.store');
+    Route::get('/{id}',[PermissionController::class, 'edit'])->name('permission.edit');
+    Route::put('/{id}',[PermissionController::class, 'update'])->name('permission.update');
+    Route::delete('/{id}',[PermissionController::class, 'destroy'])->name('permission.destroy');
 });
